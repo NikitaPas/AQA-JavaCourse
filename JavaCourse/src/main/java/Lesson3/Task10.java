@@ -2,7 +2,7 @@ package Lesson3;
 import java.util.Arrays;
 
 public class Task10 {
-    public static void diagonalElementsArray(){
+    public static void getDiagonalElementsArray(){
         int[][] arr = new int[10][10];
         for (int i = 0; i < arr.length; i++){
             for(int j = 0; j < arr[i].length; j++){
