@@ -2,9 +2,9 @@ package Lesson_4;
 
 public class Park {
     public class Attraction {
-        String name;
-        int workTime;
-        int cost;
+        private String name;
+        private int workTime;
+        private int cost;
 
         public Attraction(String name, int workTime, int cost) {
             this.name = name;
