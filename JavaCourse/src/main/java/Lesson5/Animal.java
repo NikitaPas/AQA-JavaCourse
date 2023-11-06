@@ -2,7 +2,7 @@ package Lesson5;
 
 public class Animal {
     private static int animalCount = 0;
-    String name;
+    public String name;
     public Animal(String name){
         this.name = name;
         animalCount++;
