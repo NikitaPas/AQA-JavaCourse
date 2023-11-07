@@ -1,22 +1,22 @@
 package Lesson5;
 
 public interface Calculate {
-    default double calculatePerimeter(int r){ // Circle
-         return Math.PI * 2 * r;
+    default double calculatePerimeter(double radius){ // Circle
+         return Math.PI * 2 * radius;
     }
-    default double calculatePerimeter(int width, int length){ // Rectangle
+    default double calculatePerimeter(double width, double length){ // Rectangle
         return 2 * (width + length);
+    } // Recrangle
+    default double calculatePerimeter(double side1, double side2, double side3){ // triangle
+        return side1 + side2 + side3;
+    } // Triangle
+    default double calculateSquare(double radius){ // Circle
+        return Math.PI * (radius*radius);
     }
-    default double calculatePerimeter(int a, int b, int c){ // triangle
-        return a + b + c;
-    }
-    default double calculateSquare(int r){ // Circle
-        return Math.PI * r*r;
-    }
-    default double calculateSquare(int width, int length){ // Rectangle
+    default double calculateSquare(double width, double length){ // Rectangle
         return width * length;
-    }
-    default double calculateSquare(int a, int b, int c, int r){ // triangle
-        return (double) a * b * c / (4 * r);
-    }
+    } // Recrangle
+    default double calculateSquare(double side1, double side2, double side3, double r){ // triangle
+        return (double) side1 * side2 * side3 / (4 * r);
+    } // Triangle
 }

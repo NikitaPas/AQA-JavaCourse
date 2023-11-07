@@ -30,5 +30,13 @@ public class Main {
         arrCats[i].eat(foodPlate, 30);
         System.out.println(arrCats[i].getSatiety());
     }
+
+    // Task2
+    Circle circle = new Circle("red", "black", 15);
+    circle.printShapeInfo();
+    Rectangle rectangle = new Rectangle("black", "blue", 15, 20);
+    rectangle.printShapeInfo();
+    Triangle triangle = new Triangle("green", "white", 15, 20, 10, 5);
+    triangle.printShapeInfo();
     }
 }
