@@ -6,20 +6,22 @@ import java.util.Arrays;
 
 public class CSVFileHandler {
     public static void save(AppData data, String filename) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
             String headerRow = String.join(";", data.getHeader());
-            writer.println(headerRow);
+            writer.write(headerRow);
+            writer.newLine();
 
             int[][] dataRows = data.getData();
-            for (int[] row : dataRows) {
+            for (int i = 0; i < dataRows.length; i++) {
                 StringBuilder rowData = new StringBuilder();
-                for (int i = 0; i < row.length; i++) {
-                    if (i > 0) {
+                for (int j = 0; j < dataRows[i].length; j++) {
+                    if (j > 0) {
                         rowData.append(";");
                     }
-                    rowData.append(row[i]);
+                    rowData.append(dataRows[i][j]);
                 }
-                writer.println(rowData);
+                writer.write(rowData.toString());
+                writer.newLine();
             }
 
             System.out.println("Data saved successfully.");
@@ -27,14 +29,13 @@ public class CSVFileHandler {
             System.out.println("Error saving data: " + e.getMessage());
         }
     }
-
     public static AppData load(String filename) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String headerLine = reader.readLine();
             String[] header = headerLine.split(";");
 
             String line;
-            int[][] data = new int[0][];
+            int[][] data = new int[3][3];
             int rowIndex = 0;
             while ((line = reader.readLine()) != null) {
                 String[] values = line.split(";");
@@ -42,7 +43,6 @@ public class CSVFileHandler {
                 for (int i = 0; i < values.length; i++) {
                     row[i] = Integer.parseInt(values[i]);
                 }
-                data = Arrays.copyOf(data, rowIndex + 1);
                 data[rowIndex] = row;
                 rowIndex++;
             }

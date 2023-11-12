@@ -13,10 +13,8 @@ public class Main {
         CSVFileHandler.save(appData, "data.csv");
 
         AppData loadedData = CSVFileHandler.load("data.csv");
-        if (loadedData != null) {
-            System.out.println("Loaded Data:");
-            System.out.println("Header: " + Arrays.toString(loadedData.getHeader()));
-            System.out.println("Data: " + Arrays.deepToString(loadedData.getData()));
-        }
+        System.out.println("Loaded Data:");
+        System.out.println("Header: " + Arrays.toString(loadedData.getHeader()));
+        System.out.println("Data: " + Arrays.deepToString(loadedData.getData()));
     }
 }
