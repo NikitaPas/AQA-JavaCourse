@@ -5,14 +5,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Phonebook {
-    private Map<String, ArrayList<String>> phones;
-    public Phonebook(){
-        phones = new HashMap<>();
-    }
+    private Map<String, ArrayList<String>> phones = new HashMap<>();
+
     public void add(String surname, String number){
-        ArrayList<String> numbers = phones.getOrDefault(surname, new ArrayList<>());
-        numbers.add(number);
-        phones.put(surname, numbers);
+        if(number.startsWith("+8") && number.length() == 12){
+            ArrayList<String> numbers = phones.getOrDefault(surname, new ArrayList<>());
+            numbers.add(number);
+            phones.put(surname, numbers);
+        }
+        else {
+            System.out.println("Введите корректный номер телефона");
+        }
     }
     public void get(String surname){
         if(!phones.containsKey(surname)){

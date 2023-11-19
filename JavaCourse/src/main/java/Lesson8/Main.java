@@ -27,11 +27,11 @@ public class Main {
         }
 
         Phonebook phonebook = new Phonebook();
-        phonebook.add("Киров", "75588558");
-        phonebook.add("Павлов", "4532553428");
-        phonebook.add("Ильющенков", "24522313");
-        phonebook.add("Иванов", "65423442");
-        phonebook.add("Киров", "123542234");
+        phonebook.add("Киров", "+80295234512");
+        phonebook.add("Павлов", "+80294165317");
+        phonebook.add("Ильющенков", "+80291543864");
+        phonebook.add("Иванов", "+80294164317523");
+        phonebook.add("Киров", "+80291234515");
 
         phonebook.get("Киров");
         phonebook.getAll();
