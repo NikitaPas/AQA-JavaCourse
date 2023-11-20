@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.OptionalDouble;
-import java.util.stream.*;
 
 public class Task4 {
     static Collection<Student> students = Arrays.asList(
@@ -72,7 +71,7 @@ public class Task4 {
 
         students.stream()
                 .filter(student -> student.getGender().equals(Gender.MAN) && student.getAge() <= 27 && student.getAge() >= 18)
-                .forEach(student -> System.out.println("Грозит повестка: " + student.getName() + " Возраст: " + student.getAge()));
+                .forEach(student -> System.out.println("Грозит повестка: \n" + student.toString()));
     }
 
 }
