@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -92,7 +93,8 @@ public class OnlineReplishmentTest {
         Assertions.assertEquals("Срок действия", driver.findElement(By.xpath("//label[@class=\"ng-tns-c47-4 ng-star-inserted\"]")).getText());
         Assertions.assertEquals("CVC", driver.findElement(By.xpath("//label[@class=\"ng-tns-c47-5 ng-star-inserted\"]")).getText());
         Assertions.assertEquals("Имя держателя (как на карте)", driver.findElement(By.xpath("//label[@class=\"ng-tns-c47-3 ng-star-inserted\"]")).getText());
-        //
+        List<WebElement> images = driver.findElements(By.xpath("//div[@class=\"cards-brands cards-brands__container ng-tns-c53-0 ng-trigger ng-trigger-brandsState ng-star-inserted\"]//img"));
+        Assertions.assertEquals(5, images.size());
     }
 }
 
