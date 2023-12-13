@@ -74,7 +74,7 @@ public class AppTest{
         given()
                 .body("test")
                 .when()
-                .put("/put")
+                .delete("/delete")
                 .then()
                 .log()
                 .body()
@@ -84,7 +84,7 @@ public class AppTest{
                 .body("form.isEmpty()", equalTo(true))
                 .body("files.isEmpty()", equalTo(true))
                 .body("json", equalTo(null))
-                .body("url", equalTo("https://postman-echo.com/put"))
+                .body("url", equalTo("https://postman-echo.com/delete"))
                 .body("data", equalTo("test"))
                 .body("headers.isEmpty()", equalTo(false));
     }
