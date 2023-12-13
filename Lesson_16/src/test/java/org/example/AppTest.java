@@ -50,4 +50,42 @@ public class AppTest{
                 .body("data", equalTo("testPut"))
                 .body("headers.isEmpty()", equalTo(false));
     }
+    @Test
+    public void postRequestTest(){
+        given()
+                .body("test")
+                .when()
+                .put("/put")
+                .then()
+                .log()
+                .body()
+                .assertThat()
+                .statusCode(200)
+                .body("args.isEmpty()", equalTo(true))
+                .body("form.isEmpty()", equalTo(true))
+                .body("files.isEmpty()", equalTo(true))
+                .body("json", equalTo(null))
+                .body("url", equalTo("https://postman-echo.com/put"))
+                .body("data", equalTo("test"))
+                .body("headers.isEmpty()", equalTo(false));
+    }
+    @Test
+    public void deleteRequestTest(){
+        given()
+                .body("test")
+                .when()
+                .put("/put")
+                .then()
+                .log()
+                .body()
+                .assertThat()
+                .statusCode(200)
+                .body("args.isEmpty()", equalTo(true))
+                .body("form.isEmpty()", equalTo(true))
+                .body("files.isEmpty()", equalTo(true))
+                .body("json", equalTo(null))
+                .body("url", equalTo("https://postman-echo.com/put"))
+                .body("data", equalTo("test"))
+                .body("headers.isEmpty()", equalTo(false));
+    }
 }
