@@ -15,6 +15,7 @@ public class MainPage {
     By basketButtonLocator = By.xpath("//a[@data-wba-header-name='Cart']");
     private final WebDriver driver;
     List<String> productNames = new ArrayList<>();
+    List<Integer> productCost = new ArrayList<>();
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
@@ -29,7 +30,10 @@ public class MainPage {
         for(WebElement product : firstThreeElements){
             System.out.println(product.findElement(By.tagName("a")).getAttribute("aria-label"));
             System.out.println(product.findElement(By.tagName("ins")).getText());
-            productNames.add(product.findElement(By.tagName("ins")).getText());
+            productNames.add(product.findElement(By.tagName("a")).getAttribute("aria-label"));
+            productCost.add(Integer.parseInt(product.findElement(By.tagName("ins")).getText().replaceAll("[^\\d.]", "")));
+            System.out.println(productNames);
+            System.out.println(productCost);
             product.click();
             new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.textToBe(By.xpath("//caption[@class=\"product-params__caption\"]"), "Дополнительная информация"));
             List<WebElement> basketButton = driver.findElements(By.xpath("//button[@class=\"btn-main\"]"));
@@ -41,6 +45,6 @@ public class MainPage {
     }
     public BasketPage clickBasketButton(){
         driver.findElement(basketButtonLocator).click();
-        return new BasketPage(driver, firstThreeElements);
+        return new BasketPage(driver, productCost, productNames);
     }
 }

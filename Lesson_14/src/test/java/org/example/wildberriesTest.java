@@ -34,36 +34,37 @@ public class wildberriesTest {
 
     @AfterAll
     public static void tearDown(){
-//        driver.quit();
+        driver.quit();
     }
     @Test
     public void wildberriesTest(){
-//        List<WebElement> test1 = driver.findElements(By.xpath("//button[@class=\"btn-main\"]"));
-//        System.out.println(test1);
-//        test1.get(1).click();
-
-//        List<WebElement> allProducts = driver.findElements(By.xpath("//div[@class=\"product-card__wrapper\"]"));
-//        List<WebElement> firstThreeElements = allProducts.subList(0, 3);
-//        WebElement productTest = allProducts.get(0);
-//        productTest.click();
-//        new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.textToBe(By.xpath("//caption[@class=\"product-params__caption\"]"), "Дополнительная информация"));
-//        List<WebElement> basketButton = driver.findElements(By.xpath("//button[@class=\"btn-main\"]"));
-//        basketButton.get(1).click();
-//        driver.navigate().back();
-
-//        for(WebElement product : firstThreeElements){
-//            product.click();
-//        new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.textToBe(By.xpath("//caption[@class=\"product-params__caption\"]"), "Дополнительная информация"));
-//        List<WebElement> basketButton = driver.findElements(By.xpath("//button[@class=\"btn-main\"]"));
-//        basketButton.get(1).click();
-//        driver.navigate().back();
-//        }
         MainPage mainPage = PageFactory.initElements(driver, MainPage.class);
         mainPage.saveSomeProducts();
         mainPage.addElementsToBasket();
         BasketPage basketPage = mainPage.clickBasketButton();
-        basketPage.basketCost();
-        basketPage.calculatePriceProducts();
+        try{
+            Assertions.assertEquals(basketPage.getCostOnPage(), basketPage.calculatePriceProducts());
+        }
+        catch (Exception e){
+            System.out.println("Проверка стоимости не прошла");
+            e.printStackTrace();
+        }
+        System.out.println(basketPage.getListNamesProducts());
+        System.out.println(basketPage.getProductName().get(0));
+        try {
+            Assertions.assertTrue(basketPage.getListNamesProducts().containsAll(basketPage.getProductName()));
+        }
+        catch (Exception e){
+            System.out.println("Проверка названий не прошла");
+            e.printStackTrace();
+        }
+        System.out.println(basketPage.getListCostsPage());
+        try {
+            Assertions.assertIterableEquals(basketPage.getListCostsPage(), basketPage.getProductCost());
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
 
